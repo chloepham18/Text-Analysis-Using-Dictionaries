@@ -1,0 +1,84 @@
+def print_first(txt):
+    file = open(txt)
+    line = file.readline()
+    while line:
+        first_char = line[0]
+        print(first_char)
+        line = file.readline()
+
+def print_first_gen(lines, start, end):
+    for i in range(start-1, end):
+        first_char = lines[i][0]
+        first_char = first_char.lower()
+        print(first_char)
+        
+def make_freq_dict(lines,start,end):
+    letters = {}
+    for i in range(start-1, end):
+        line = lines[i]
+        line = line.lower()
+        for letter in line:
+            if letter not in letters:
+                letters[letter] = 1
+            else:
+                letters[letter] += 1
+    return letters              
+
+def print_result(gads):
+    gadsOrdered = sorted(gads.items(), key=lambda x:x[1], reverse = True)
+    print(gadsOrdered)
+
+def sumChars():
+    lst = make_freq_dict(lines,1,5680)
+    value = list(lst.values())
+    return sum(value)  
+
+def make_percentage():
+    lst = make_freq_dict(lines,1,5680)
+    key = list(lst.keys())
+    value = list(lst.values())
+    total = sumChars()
+    
+    per_list = []
+    for i in value:
+        per = (i/total) * 100
+        per = str(round(per,2)) + "%"
+        per_list.append(per)
+          
+    ans = {key[i]: per_list[i] for i in range(len(key))}
+    ans_sort = dict(sorted(ans.items(), key = lambda x:x[1], reverse = True))
+
+    for k,v in ans_sort.items():
+        print(f"'{k}':",v)
+
+def letters_percentage():
+    lst = make_freq_dict(lines,1,5680)
+    key = list(lst.keys())
+    value = list(lst.values())
+    total = sumChars()
+    
+    per_list = []
+    for i in value:
+        per = (i/total) * 100
+        per = str(round(per,2)) + "%"
+        per_list.append(per)
+          
+    ans = {key[i]: per_list[i] for i in range(len(key))}
+    ans_sort = dict(sorted(ans.items(), key = lambda x:x[1], reverse = True))
+
+    for k,v in ans_sort.items():
+        if k in "abcdefgihjklmnopqrstuvwxyz":
+            print(f"'{k}':",v)
+       
+file = open("sample.txt")
+lines = file.readlines()
+file.close()
+
+##print_first("gadsby.txt")
+##print_first_gen(lines,1,20)
+##print(make_freq_dict(lines,1,20))
+##gads = make_freq_dict(lines,1,5680)
+##print_result(gads)
+##print(sumChars())
+##make_percentage()
+##letters_percentage()
