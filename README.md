@@ -1,1 +1,1 @@
-File sample.txt and gadsby.txt: https://rebrand.ly/textanalysisusingdictionaries
+File sample.txt and gadsby.txt: https://rebrand.ly/TextAnalysisUsingDictionaries
